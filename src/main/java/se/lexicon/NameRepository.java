@@ -60,6 +60,7 @@ public class NameRepository {
     }
 
     // Part 02 --------------------------------------------------------
+
     /**
      * Finds a name that matches the given fullName case-insensitively.
      *
@@ -68,7 +69,12 @@ public class NameRepository {
      */
     public static String find(String fullName) {
 
+        for (int i = 0; i < names.length; i++) {
 
+            if (fullName.equalsIgnoreCase(names[i])) {
+                return names[i];
+            }
+        }
         return null;
     } // find
 
@@ -79,12 +85,23 @@ public class NameRepository {
      * @return True if the fullName is added successfully; false if it already exists.
      */
     public static boolean add(String fullName) {
-        //todo: PART 2: implement add method
-        return false;
-    }
 
+        // Check if the name already exists in the array
+        for (int i = 0; i < names.length; i++) {
+            if (fullName.equalsIgnoreCase(names[i])) {
+                return false; // name already exist
+            }//if
+        } //for
+        // if the name is not exist. add it to the new array with additional slot.
+        String[] newArrays = Arrays.copyOf(names, names.length+1);
+        // add a new name to the end of the newArrays.
+        newArrays[newArrays.length - 1] = fullName;
+        // Assign the new array
+        names = newArrays;
+        return true;
+    } //add
 
-
+    // Part 03 --------------------------------------------------------
 
     /**
      * Find all names that match the given firstName.
