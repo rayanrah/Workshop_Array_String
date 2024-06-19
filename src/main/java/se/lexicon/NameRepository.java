@@ -93,7 +93,7 @@ public class NameRepository {
             }//if
         } //for
         // if the name is not exist. add it to the new array with additional slot.
-        String[] newArrays = Arrays.copyOf(names, names.length+1);
+        String[] newArrays = Arrays.copyOf(names, names.length + 1);
         // add a new name to the end of the newArrays.
         newArrays[newArrays.length - 1] = fullName;
         // Assign the new array
@@ -110,9 +110,22 @@ public class NameRepository {
      * @return An array containing all matching names.
      */
     public static String[] findByFirstName(String firstName) {
-        //todo: PART 3: findByFirstName method
-        return null;
-    }
+
+        String[] tempArray = new String[0];
+
+        for (int i = 0; i < names.length; i++) {
+            String[] parts = names[i].split(" ");
+
+            if (firstName.equalsIgnoreCase(parts[0])) {
+                // make a copy of tempArray and expand it with one more element.
+                // then add the element value to the last index of the array - 1
+                String[] newArray = Arrays.copyOf(tempArray, tempArray.length + 1);
+                newArray[tempArray.length] = names[i];
+                tempArray = newArray;
+            } // if
+        } // for-loop
+        return tempArray;
+    } // findByFirstname
 
 
     /**
@@ -122,21 +135,40 @@ public class NameRepository {
      * @return An array containing all matching names.
      */
     public static String[] findByLastName(String lastName) {
-        //todo: PART 3: implement findByLastName method
-        return null;
-    }
 
+        // create a temporary Array to store the names.
+        String[] tempArray = new String[0];
+
+        // Iterate the names array.
+        for (int i = 0; i < names.length; i++) {
+            //Split the names in two name and lastName.
+            String[] parts = names[i].split(" ");
+
+            if (lastName.equalsIgnoreCase(parts[1])) {
+                //Make a copy of the tempArray with one elements.
+                // add the value to to that index.
+                String[] newArray = Arrays.copyOf(tempArray, tempArray.length + 1);
+                newArray[tempArray.length] = names[i];
+                tempArray = newArray;
+            }
+        } //for-loop
+        return tempArray;
+    }
 
     /**
      * Updates a name in the names array from the original name to the updated name.
      *
      * @param original    The original name to update.
      * @param updatedName The updated name to set.
-     * @return True if the name is updated successfully; false if the updated name already exists or the original name is not found.
+     * @return True if the name is updated successfully; false if the updated name already exists
+     * or the original name is not found.
      */
     public static boolean update(String original, String updatedName) {
-        //todo: PART 3: implement update method
-        return false;
+
+
+
+
+
     }
 
 
