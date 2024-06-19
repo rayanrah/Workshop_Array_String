@@ -1,5 +1,7 @@
 package se.lexicon;
 
+import java.util.Arrays;
+
 /**
  * The NameRepository class provides methods to manage a list of names.
  * It offers functionalities such as adding, removing, finding, and updating names.
@@ -15,18 +17,18 @@ public class NameRepository {
      * @return The number of elements in the names array.
      */
     public static int getSize() {
-        //todo: PART 1: implement getSize method
-        return 0;
+        int size = names.length;
+        return size;
     }
 
 
     /**
      * Sets the names array to the provided array of names & it should replace all existing names.
      *
-     * @param names The array of names to set.
+     * @param newNames The array of names to set.
      */
-    public static void setNames(String[] names) {
-        //todo: PART 1: implement setNames method
+    public static void setNames(String[] newNames) {
+        names = Arrays.copyOf(newNames, newNames.length);
     }
 
 
@@ -34,9 +36,10 @@ public class NameRepository {
      * Clears the names array by creating a new empty array.
      */
     public static void clear() {
-        //todo: PART 1: implement clear method
-    }
 
+        names = new String[0];
+
+    }
 
     /**
      * Returns all names in a new array (Retrieves a copy of the names array).
@@ -44,11 +47,19 @@ public class NameRepository {
      * @return A new array containing all elements from the names array.
      */
     public static String[] findAll() {
-        //todo: PART 1: implement findAll method
-        return null;
+
+        //Create a new Array.
+        String[] copiedArrays = new String[names.length];
+
+        // Copy elements from names array to copiedArrays.
+        for (int i = 0; i < names.length; i++) {
+            copiedArrays[i] = names[i];
+        } // for
+
+        return copiedArrays;
     }
 
-
+    // Part 02 --------------------------------------------------------
     /**
      * Finds a name that matches the given fullName case-insensitively.
      *
@@ -56,10 +67,10 @@ public class NameRepository {
      * @return The matching name if found; otherwise, null.
      */
     public static String find(String fullName) {
-        //todo: PART 2: implement find method
-        return null;
-    }
 
+
+        return null;
+    } // find
 
     /**
      * Adds a new fullName to the names array if it doesn't already exist.
@@ -71,6 +82,8 @@ public class NameRepository {
         //todo: PART 2: implement add method
         return false;
     }
+
+
 
 
     /**
