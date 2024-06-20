@@ -10,7 +10,6 @@ public class NameRepository {
 
     private static String[] names = new String[0];
 
-
     /**
      * Retrieves the current size of the names array.
      *
@@ -28,6 +27,7 @@ public class NameRepository {
      * @param newNames The array of names to set.
      */
     public static void setNames(String[] newNames) {
+
         names = Arrays.copyOf(newNames, newNames.length);
     }
 
@@ -165,12 +165,17 @@ public class NameRepository {
      */
     public static boolean update(String original, String updatedName) {
 
+        // Iterate over the names array
+        for (int i = 0; i < names.length; i++) {
 
-
-
-
+            if (original.equalsIgnoreCase(names [i])) {
+                //Check is the update is already exist.
+                names[i] = updatedName; // Update the name in the array
+                return true; // Return true if the name was updated successfully
+            }//if
+        }
+        return false;  // Return false if no match was found for the original name
     }
-
 
     /**
      * Removes a name from the names array, case-insensitively.
@@ -179,9 +184,18 @@ public class NameRepository {
      * @return True if the name is removed successfully; false if the name is not found in the array.
      */
     public static boolean remove(String fullName) {
-        //todo: PART 4: implement remove method
+        for (int i = 0; i < names.length; i++) {
+            if (names[i].equalsIgnoreCase(fullName)) {
+                // J start at the 'i' index we want to remove.
+                for (int j = i; j < names.length -1 ; j++) {
+                    names[j] = names[j + 1];
+                }
+                names[names.length - 1] = null;
+                names = Arrays.copyOf(names, names.length-1);
+                return true;
+            } // if
+        }
         return false;
     }
-
-
 }
+
